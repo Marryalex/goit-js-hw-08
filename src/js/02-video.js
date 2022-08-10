@@ -7,8 +7,14 @@ const player = new Player(iframe);
 const LOCALSTORAGE_KEY = "videoplayer-current-time"
 const getCurrantTime = localStorage.getItem(LOCALSTORAGE_KEY)
 
+let parsVideoTime;
+
+
 if (getCurrantTime !== null) {
-    player.setCurrentTime(getCurrantTime);
+    parsVideoTime = JSON.parse(getCurrantTime)
+    player.setCurrentTime(parsVideoTime);
+} else {
+    parsVideoTime = 0
 }
 
 function onPlay({ seconds }) {

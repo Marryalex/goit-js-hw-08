@@ -12,21 +12,22 @@ form.addEventListener('input', throttle(onInput, 500))
 function onInput(e) {
     formData[e.target.name] = e.target.value;
     localStorage.setItem(STORAGE_KEY, JSON.stringify(formData))
+
 }
 
 function onFormSubmit(event) {
     event.preventDefault()
 
-    localStorage.removeItem(STORAGE_KEY)
+    // localStorage.removeItem(STORAGE_KEY)
     form.reset()
     console.log(formData)
 }
 
 function updForm() {
     const savedData = JSON.parse(localStorage.getItem(STORAGE_KEY))
-    if (savedData) {
-        form.email.value = savedData.email
-        form.message.value = savedData.message
+    if (savedData != null) {
+        form.email.value = savedData.email || "";
+        form.message.value = savedData.message || "";
     }
     console.log(savedData)
 }
