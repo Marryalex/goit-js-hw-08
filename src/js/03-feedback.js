@@ -25,9 +25,11 @@ function onFormSubmit(event) {
 
 function updForm() {
     const savedData = JSON.parse(localStorage.getItem(STORAGE_KEY))
-    if (savedData != null) {
-        form.email.value = savedData.email || "";
-        form.message.value = savedData.message || "";
+    if (savedData) {
+        Object.entries(savedData).forEach(([name, value]) => {
+            form.elements[name].value = value;
+            formData[name] = value;
+        });
     }
     console.log(savedData)
 }
